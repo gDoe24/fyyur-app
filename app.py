@@ -48,18 +48,8 @@ class Venue(db.Model):
     seeking_talent = db.Column(db.Boolean(), default=False)
     seeking_description = db.Column(db.String(240))
     shows = db.relationship('Show', backref='venue_show_id')
-    
-    area = db.Column(db.Integer, db.ForeignKey("Area.id"))
     # TODO: implement any missing fields, as a database migration using Flask-Migrate
 
-class Area(db.Model):
-  __tablename__ = "Area"
-
-  id = db.Column(db.Integer, primary_key=True)
-  city = db.Column(db.String(120))
-  state = db.Column(db.String(120))
-
-  venues = db.relationship('Venue', backref="area_id")
 
 class Artist(db.Model):
     __tablename__ = 'Artist'
@@ -116,7 +106,30 @@ def index():
 def venues():
   # TODO: replace with real venues data.
   #       num_shows should be aggregated based on number of upcoming shows per venue.
-  data = Area.query.all()
+  data = []
+  now = now= datetime.utcnow()
+  areas = db.session.query(Venue.city, Venue.state).group_by(Venue.city,Venue.state).all()
+  for area in areas:
+    v_data = []
+    venues = Venue.query.filter(Venue.city == area.city).filter(Venue.state==area.state).all()
+    
+    for v in venues:
+      upcoming_shows_count = 0
+      # Upcoming shows not in template, so no reason to hinder performance for it
+      '''for show in v.shows:
+        if format_datetime(str(show.show_date)) > format_datetime(str(now)):
+          upcoming_shows_count += 1'''
+      v_data.append({
+        "id": v.id,
+        "name": v.name,
+        "upcoming_shows_count": upcoming_shows_count
+      })
+    data.append({
+      'city':area.city,
+      'state':area.state,
+      'venues': v_data
+    })
+
   return render_template('pages/venues.html', areas=data)
 
 @app.route('/venues/search', methods=['POST'])
