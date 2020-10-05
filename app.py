@@ -5,6 +5,7 @@
 import json
 import dateutil.parser
 import babel
+from config import app
 from datetime import datetime
 from flask import Flask, render_template, request, Response, flash, redirect, url_for
 from flask_moment import Moment
@@ -18,12 +19,7 @@ from forms import *
 # App Config.
 #----------------------------------------------------------------------------#
 
-app = Flask(__name__)
 moment = Moment(app)
-app.config.from_object('config')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://udacity:postgres@localhost:5432/fyyur'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-
 db = SQLAlchemy(app)
 
 migrate = Migrate(app, db)
