@@ -34,9 +34,19 @@ npm install bootstrap@3
 
 **3. Install Dependencies**
 
-Lastly, install the remaining dependencies using:
+Install the remaining dependencies using:
 
 ```
 npm init -y
 npm install bootstrap@3
+```
+
+**4. Running the app**
+
+Lastly, to run the app set your flask environment to app.py and run:
+
+```
+export FLASK_APP=app.py
+export FLASK_ENV=development
+flask run
 ```
