@@ -10,3 +10,15 @@ Our tech stack includes the following:
 - Python3 and Flask as our server language and server framework
 - SQLAlchemy ORM
 - PostgreSQL as our database of choice
+- Flask-Migrate for creating and running schema migrations 
+- You can download and install the dependencies mentioned above using pip as:
+
+```
+pip install SQLAlchemy
+pip install postgres
+pip install Flask
+pip install Flask-Migrate
+```
+
+2. Frontend Dependencies
+If you have not already, download and install [Node.js](https://nodejs.org/en/download/) to install Bootstrap 3.
