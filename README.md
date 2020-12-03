@@ -5,6 +5,7 @@ Fyyur is a website used to facilitate bookings between musical venues and artist
 ## Getting Started
 
 **1. Backend Dependencies**
+
 Our tech stack includes the following:
 
 - Python3 and Flask as our server language and server framework
@@ -21,6 +22,7 @@ pip install Flask-Migrate
 ```
 
 **2. Frontend Dependencies**
+
 If you have not already, download and install [Node.js](https://nodejs.org/en/download/). This is necessary to install Bootstrap 3.
 
 Once you have downloaded Node.js, install Bootstrap 3:
@@ -31,6 +33,7 @@ npm install bootstrap@3
 ```
 
 **3. Install Dependencies**
+
 Lastly, install the remaining dependencies using:
 
 ```
